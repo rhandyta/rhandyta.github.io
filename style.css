@@ -191,7 +191,7 @@ body {
 
 .header-button .header-divider {
     width: 0.5em;
-    border: 1px solid rgb(83, 83, 83);
+    border-top: 2px solid rgb(83, 83, 83);
     margin: 0.15em 0;
 }
 
