@@ -289,4 +289,8 @@ h2 {
     .data .box {
         width: 100%;
     }
+
+    .right-menu #menu {
+        display: none;
+    }
 }
