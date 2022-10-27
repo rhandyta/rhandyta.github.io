@@ -26,12 +26,10 @@ function numFormat(value) {
 // }
 
 const fetchTotalCovid = async () => {
-    const headers = { headers:
-        {"Content-Type": "application/json"}
-    }
+    const headers = { headers: { "Content-Type": "application/json" } };
     try {
-        const res = await fetch(`${baseUrl}`,headers);
-        let {update} = await res.json();
+        const res = await fetch(`${baseUrl}`, headers);
+        let { update } = await res.json();
         positif.textContent = numFormat(update.total.jumlah_positif);
         dirawat.textContent = numFormat(update.total.jumlah_dirawat);
         sembuh.textContent = numFormat(update.total.jumlah_sembuh);
@@ -39,6 +37,7 @@ const fetchTotalCovid = async () => {
         Object.assign(result, update);
         // filterDateTime(result.harian);
         totalFiltered(result);
+        console.log(update);
     } catch (e) {
         return e.message;
     }
@@ -52,70 +51,41 @@ const totalFiltered = (result) => {
     let datas = [];
     for (let i = 0; i < result.harian.length; i++) {
         let date = new Date(result.harian[i].key_as_string);
-        console.log(date)
         if (
-            date.getDate() <
+            date.getDate() <=
             getDayInMonth(date.getFullYear(), date.getMonth() + 1)
         ) {
             if (date.getFullYear() === date.getFullYear()) {
-                datas[date.toLocaleString("id-ID", { month: "long" }) + " " + date.getFullYear() ] = {
-                    "jumlah_positif": result.harian[i].jumlah_positif.value,
-                    "jumlah_meninggal": result.harian[i].jumlah_meninggal.value,
-                    "jumlah_sembuh": result.harian[i].jumlah_sembuh.value,
-                    "jumlah_dirawat": result.harian[i].jumlah_dirawat.value
-                }
-
-
-                
-                // datas[date.toLocaleString("id-ID", { month: "long" }) + " " + date.getFullYear() + " jumlah_meninggal"] = result.harian[i].jumlah_meninggal.value;
-                // datas[date.toLocaleString("id-ID", { month: "long" }) + " " +date.getFullYear() +" jumlah_sembuh"] = result.harian[i].jumlah_sembuh.value;
-                // datas[ date.toLocaleString("id-ID", { month: "long" }) + " " + date.getFullYear() + " jumlah_dirawat"] = result.harian[i].jumlah_dirawat.value;
+                datas[
+                    date.toLocaleString("id-ID", { month: "long" }) +
+                        " " +
+                        date.getFullYear() +
+                        " jumlah_positif"
+                ] = result.harian[i].jumlah_positif.value;
+                datas[
+                    date.toLocaleString("id-ID", { month: "long" }) +
+                        " " +
+                        date.getFullYear() +
+                        " jumlah_meninggal"
+                ] = result.harian[i].jumlah_meninggal.value;
+                datas[
+                    date.toLocaleString("id-ID", { month: "long" }) +
+                        " " +
+                        date.getFullYear() +
+                        " jumlah_sembuh"
+                ] = result.harian[i].jumlah_sembuh.value;
+                datas[
+                    date.toLocaleString("id-ID", { month: "long" }) +
+                        " " +
+                        date.getFullYear() +
+                        " jumlah_dirawat"
+                ] = result.harian[i].jumlah_dirawat.value;
             }
         }
     }
     month.push(datas);
     console.log(month);
 };
-
-// const totalFiltered = (result) => {
-//     let datas = [];
-//     for (let i = 0; i < result.harian.length; i++) {
-//         let date = new Date(result.harian[i].key_as_string);
-//         if (
-//             date.getDate() <=
-//             getDayInMonth(date.getFullYear(), date.getMonth() + 1)
-//         ) {
-//             if (date.getFullYear() === date.getFullYear()) {
-//                 datas[
-//                     date.toLocaleString("id-ID", { month: "long" }) +
-//                         " " +
-//                         date.getFullYear() +
-//                         " jumlah_positif"
-//                 ] = result.harian[i].jumlah_positif.value;
-//                 datas[
-//                     date.toLocaleString("id-ID", { month: "long" }) +
-//                         " " +
-//                         date.getFullYear() +
-//                         " jumlah_meninggal"
-//                 ] = result.harian[i].jumlah_meninggal.value;
-//                 datas[
-//                     date.toLocaleString("id-ID", { month: "long" }) +
-//                         " " +
-//                         date.getFullYear() +
-//                         " jumlah_sembuh"
-//                 ] = result.harian[i].jumlah_sembuh.value;
-//                 datas[
-//                     date.toLocaleString("id-ID", { month: "long" }) +
-//                         " " +
-//                         date.getFullYear() +
-//                         " jumlah_dirawat"
-//                 ] = result.harian[i].jumlah_dirawat.value;
-//             }
-//         }
-//     }
-//     month.push(datas);
-//     console.log(month);
-// };
 
 fetchTotalCovid();
 const ctx = document.getElementById("myChart");
