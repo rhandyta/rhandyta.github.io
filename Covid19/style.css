@@ -282,15 +282,19 @@ h2 {
 }
 
 @media (max-width: 727px) {
+    #header {
+        justify-content: center;
+    }
+
+    .right-menu #menu {
+        display: none;
+    }
+
     .data {
         justify-content: center;
     }
 
     .data .box {
         width: 100%;
-    }
-
-    .right-menu #menu {
-        display: none;
     }
 }
