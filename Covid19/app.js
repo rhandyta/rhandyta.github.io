@@ -1,6 +1,5 @@
-const baseUrl = "http://localhost:3000/update";
-// const baseUrl =
-//     "https://cors-anywhere.herokuapp.com/https://data.covid19.go.id/public/api/update.json";
+//const baseUrl = "http://localhost:3000/update";
+ const baseUrl = "https://cors-anywhere.herokuapp.com/https://data.covid19.go.id/public/api/update.json";
 const positif = document.querySelector("#jumlah_positif");
 const dirawat = document.querySelector("#jumlah_dirawat");
 const sembuh = document.querySelector("#jumlah_sembuh");
@@ -39,7 +38,7 @@ const fetchTotalCovid = async () => {
     const headers = { headers: { "Content-Type": "application/json" } };
     try {
         const res = await fetch(`${baseUrl}`, headers);
-        let update = await res.json();
+        let {update} = await res.json();
         positif.textContent = numFormat(update.total.jumlah_positif);
         dirawat.textContent = numFormat(update.total.jumlah_dirawat);
         sembuh.textContent = numFormat(update.total.jumlah_sembuh);
@@ -210,7 +209,7 @@ const totalFiltered = async (result) => {
 
 const fetchTotalVaksin = async () => {
     try {
-        let response = await fetch("http://localhost:3001/vaksinasi");
+        let response = await fetch("https://cors-anywhere.herokuapp.com/https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json");
         let data = await response.json();
         vaksin1.textContent = numFormat(data.total.jumlah_vaksinasi_1);
         vaksin2.textContent = numFormat(data.total.jumlah_vaksinasi_2);
