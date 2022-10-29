@@ -255,14 +255,21 @@ h2 {
     font-weight: 600;
     margin-bottom: 7px;
 }
+
 .statistik {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 .section-statistik {
     width: 48%;
+}
+
+.section-statistik p {
+    font-size: 0.8rem;
+    margin: 5px 0;
 }
 
 .statistik-box {
