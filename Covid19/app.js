@@ -35,7 +35,7 @@ const fetchTotalCovid = async () => {
     const headers = { headers: { "Content-Type": "application/json" } };
     try {
         const res = await fetch(`${baseUrl}`, headers);
-        let {update} = await res.json();
+        let update = await res.json();
         positif.textContent = numFormat(update.total.jumlah_positif);
         dirawat.textContent = numFormat(update.total.jumlah_dirawat);
         sembuh.textContent = numFormat(update.total.jumlah_sembuh);
@@ -106,7 +106,11 @@ const totalFiltered = async (result) => {
 
         return acc;
     }, {});
-
+    console.log("meninggal => ", sumPerMonthMeninggal);
+    console.log("dirawat => ", sumPerMonthDirawat);
+    console.log("sembuh => ", sumPerMonthSembuh);
+    console.log("positif => ", sumPerMonthPositif);
+    const monthNum = Object.keys(sumPerMonthPositif);
     const monthNumPlusOne = [];
     const monthResult = [];
     for (let j = 0; j < monthNum.length; j++) {
