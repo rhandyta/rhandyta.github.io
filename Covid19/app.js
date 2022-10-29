@@ -1,6 +1,5 @@
-const baseUrl = "http://localhost:3000/update";
-// const baseUrl =
-//     "https://cors-anywhere.herokuapp.com/https://data.covid19.go.id/public/api/update.json";
+//const baseUrl = "http://localhost:3000/update";
+const baseUrl = "https://cors-anywhere.herokuapp.com/https://data.covid19.go.id/public/api/update.json";
 const positif = document.querySelector("#jumlah_positif");
 const dirawat = document.querySelector("#jumlah_dirawat");
 const sembuh = document.querySelector("#jumlah_sembuh");
