@@ -35,7 +35,7 @@ const fetchTotalCovid = async () => {
     const headers = { headers: { "Content-Type": "application/json" } };
     try {
         const res = await fetch(`${baseUrl}`, headers);
-        let {update} = await res.json();
+        let update = await res.json();
         positif.textContent = numFormat(update.total.jumlah_positif);
         dirawat.textContent = numFormat(update.total.jumlah_dirawat);
         sembuh.textContent = numFormat(update.total.jumlah_sembuh);
